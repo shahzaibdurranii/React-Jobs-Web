@@ -45,7 +45,7 @@ const formSubmit = (e) => {
         <div
           className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={formSubmit}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Edit Job</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6">Add <span className='text-indigo-700 font-bolder'>Job</span> </h2>
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
@@ -214,7 +214,7 @@ const formSubmit = (e) => {
                 className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Update Job
+                Add Job
               </button>
             </div>
           </form>
