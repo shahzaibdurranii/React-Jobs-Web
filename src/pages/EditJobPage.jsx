@@ -1,42 +1,44 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {toast} from 'react-toastify';
-import { FaCheckCircle } from 'react-icons/fa';
+import {useState} from 'react';
+import { useParams , useLoaderData ,useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const AddJobPage = ({addJobSubmit}) => {
-  
-  const [ title , setTitle] = useState('');
-  const [ type , setType ] = useState('Full-Time');
-  const [ location , setLocation] = useState('');
-  const [ description ,setDescription] = useState('');
-  const [ salary ,setSalary] = useState('Under $50K');
-  const [ companyName ,setCompanyName] = useState('');
-  const [ companyDescription , setCompanyDescription ] = useState('');
-  const [ contactEmail , setContactEmail] = useState('');
-  const [ contactPhone ,setContactPhone] = useState('');
+const EditJobPage = ({updateJobSubmit}) => {
+  const job = useLoaderData();
+
+  const [ title , setTitle] = useState(job.title);
+  const [ type , setType ] = useState(job.type);
+  const [ location , setLocation] = useState(job.location);
+  const [ description ,setDescription] = useState(job.description);
+  const [ salary ,setSalary] = useState(job.salary);
+  const [ companyName ,setCompanyName] = useState(job.company.name);
+  const [ companyDescription , setCompanyDescription ] = useState(job.company.description);
+  const [ contactEmail , setContactEmail] = useState(job.company.contactEmail);
+  const [ contactPhone ,setContactPhone] = useState(job.company.contactPhone);
 
   const navigate = useNavigate();
+  const {id} = useParams();
 
-const formSubmit = (e) => {
-  e.preventDefault();
-
-  const newJob = {
-    title,
-    type,
-    location,
-    description,
-    salary,
-    company:{
-      name : companyName,
-      description : companyDescription,
-      contactEmail,
-      contactPhone
+  const formSubmit = (e) => {
+    e.preventDefault();
+  
+    const updatedJob = {
+      id,
+      title,
+      type,
+      location,
+      description,
+      salary,
+      company:{
+        name : companyName,
+        description : companyDescription,
+        contactEmail,
+        contactPhone
+      }
     }
+    updateJobSubmit(updatedJob);
+    toast.success("Job Updated Successfully!")
+    return navigate( `/jobs/${id}` )
   }
-  addJobSubmit(newJob);
-  toast.success("Job Added Successfully!")
-  return navigate( '/jobs' )
-}
 
   return (
     <>
@@ -45,7 +47,7 @@ const formSubmit = (e) => {
         <div
           className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={formSubmit}>
-            <h2 className="text-3xl text-center font-semibold mb-6">Edit Job</h2>
+            <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2>
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
@@ -68,9 +70,9 @@ const formSubmit = (e) => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-gray-700 font-bold mb-2">
-                Job Listing Name
-              </label>
+              <label className="block text-gray-700 font-bold mb-2"
+                >Job Listing Name</label
+              >
               <input
                 type="text"
                 id="title"
@@ -85,9 +87,9 @@ const formSubmit = (e) => {
             <div className="mb-4">
               <label
                 htmlFor="description"
-                className="block text-gray-700 font-bold mb-2">
-                  Description
-              </label>
+                className="block text-gray-700 font-bold mb-2"
+                >Description</label
+              >
               <textarea
                 id="description"
                 name="description"
@@ -100,9 +102,9 @@ const formSubmit = (e) => {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="type" className="block text-gray-700 font-bold mb-2">
-                Salary
-              </label>
+              <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
+                >Salary</label
+              >
               <select
                 id="salary"
                 name="salary"
@@ -110,6 +112,7 @@ const formSubmit = (e) => {
                 required
                 value={salary}
                 onChange={(e)=> setSalary(e.target.value)}
+                
               >
                 <option value="Under $50K">Under $50K</option>
                 <option value="$50K - 60K">$50K - $60K</option>
@@ -144,9 +147,9 @@ const formSubmit = (e) => {
             <h3 className="text-2xl mb-5">Company Info</h3>
 
             <div className="mb-4">
-              <label htmlFor="company" className="block text-gray-700 font-bold mb-2">
-                Company Name
-              </label>
+              <label htmlFor="company" className="block text-gray-700 font-bold mb-2"
+                >Company Name</label
+              >
               <input
                 type="text"
                 id="company"
@@ -161,9 +164,9 @@ const formSubmit = (e) => {
             <div className="mb-4">
               <label
                 htmlFor="company_description"
-                className="block text-gray-700 font-bold mb-2">
-                  Company Description
-              </label>
+                className="block text-gray-700 font-bold mb-2"
+                >Company Description</label
+              >
               <textarea
                 id="company_description"
                 name="company_description"
@@ -178,9 +181,9 @@ const formSubmit = (e) => {
             <div className="mb-4">
               <label
                 htmlFor="contact_email"
-                className="block text-gray-700 font-bold mb-2">
-                  Contact Email
-              </label>
+                className="block text-gray-700 font-bold mb-2"
+                >Contact Email</label
+              >
               <input
                 type="email"
                 id="contact_email"
@@ -214,7 +217,7 @@ const formSubmit = (e) => {
                 className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Update Job
+                Add Job
               </button>
             </div>
           </form>
@@ -225,4 +228,4 @@ const formSubmit = (e) => {
   )
 }
 
-export default AddJobPage
+export default EditJobPage
