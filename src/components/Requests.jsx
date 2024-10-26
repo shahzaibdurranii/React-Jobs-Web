@@ -9,7 +9,8 @@ export const addJob = async (newJob) => {
     },
     body: JSON.stringify(newJob),
   });
-  return res.json(); 
+  return res.json();
+   
 };
 
 // Delete Job

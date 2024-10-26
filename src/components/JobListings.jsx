@@ -2,7 +2,7 @@ import React from 'react';
 import { useState , useEffect } from 'react';
 import JobListing from './JobListing';
 import Spinner from './Spinner';
-import {API_URL} from '../config.js';
+import {API_URL} from '../config';
 const JobListings = ({isHome = false}) => {
   
   const [jobs , setJobs] = useState([]);
