@@ -29,8 +29,8 @@ const formSubmit = (e) => {
     company:{
       name : companyName,
       description : companyDescription,
-      contactEmail,
-      contactPhone
+      contactEmail: contactEmail,
+      contactPhone : contactPhone,
     }
   }
   addJobSubmit(newJob);
