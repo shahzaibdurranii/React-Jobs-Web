@@ -16,6 +16,8 @@ export const addJob = async (newJob) => {
 // Delete Job
 export const deleteJob = async (id) => {
   console.log("api url",API_URL);
+  console.log("api url",`${API_URL}/jobs`);
+
   const res = await fetch(`${API_URL}/jobs/${id}`, {
     method: 'DELETE',
   });
