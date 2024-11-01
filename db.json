@@ -83,20 +83,6 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
-    },
-    {
-      "id": "bb85",
-      "title": "sfsdgfdghfd",
-      "type": "Remote",
-      "location": "sdgsdgsdgsdg",
-      "description": "hfgdhjfgjfghjfgjfgj",
-      "salary": "$80K - 90K",
-      "company": {
-        "name": "HelloWorld!",
-        "description": "dfgfhdhfdjhfd",
-        "contactEmail": "durranishahzaib0@gmail.com",
-        "contactPhone": "03307038548"
-      }
     }
   ]
 }
